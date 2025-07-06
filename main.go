@@ -46,7 +46,8 @@ func main() {
 		b1 = append(b1, asci[m])
 	}
 	fmt.Println(b1[0][0])
-	s:=0
+	s := 0
+	 //m:=0
 	for i := 0; i < 8; i++ {
 		for j := s; j < len(b1); j++ {
 			if b1[j][0] == "\n" {
@@ -55,15 +56,16 @@ func main() {
 			// m := (str[j] - 32)
 			fmt.Print(b1[j][i])
 			if j != len(b1)-1 && i == 7 && b1[j+1][0] == "\n" {
-				s=j+1
-				i = 0
+				s = j + 1
+				i=-1
+				fmt.Println()
 				break
 			}
 			if j != len(b1)-1 && b1[j+1][0] == "\n" {
 				j = 0
 				break
 			}
-			
+
 		}
 		fmt.Println()
 	}
