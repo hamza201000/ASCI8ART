@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-
 	file, err := os.Open("standard.txt")
 	if err != nil {
 		fmt.Println("error :", err)
@@ -16,12 +15,11 @@ func main() {
 
 	asci := [][]string{}
 	asci_line := []string{}
-	//str:=""
+	// str:=""
 	b := false
 	for sacnneer.Scan() {
 		if sacnneer.Text() == "" && !b {
 			continue
-
 		}
 		if sacnneer.Text() == "" {
 			asci = append(asci, asci_line)
@@ -36,7 +34,7 @@ func main() {
 	}
 
 	str := "Hello\nThere"
-	//fmt.Println(asci[0])
+	// fmt.Println(asci[0])
 	b1 := [][]string{}
 	newlne := []string{"\n"}
 	for i := 0; i < len(str); i++ {
@@ -47,14 +45,26 @@ func main() {
 		}
 		b1 = append(b1, asci[m])
 	}
-	fmt.Println(b1)
+	fmt.Println(b1[0][0])
+	s:=0
 	for i := 0; i < 8; i++ {
-		for j := 0; j < len(b1); j++ {
-			
-			//m := (str[j] - 32)
+		for j := s; j < len(b1); j++ {
+			if b1[j][0] == "\n" {
+				continue
+			}
+			// m := (str[j] - 32)
 			fmt.Print(b1[j][i])
+			if j != len(b1)-1 && i == 7 && b1[j+1][0] == "\n" {
+				s=j+1
+				i = 0
+				break
+			}
+			if j != len(b1)-1 && b1[j+1][0] == "\n" {
+				j = 0
+				break
+			}
+			
 		}
 		fmt.Println()
 	}
-
 }
