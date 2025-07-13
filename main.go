@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -33,9 +34,13 @@ func main() {
 
 	}
 
-	str := "Hello\nThere"
+	str := os.Args[1]
+	//ne := strings.ReplaceAll(str, `\n`, "\n")
+	newstring := strings.Split(str, "\\n")
+	//fmt.Println(str)
+	
 	// fmt.Println(asci[0])
-	b1 := [][]string{}
+	/*b1 := [][]string{}
 	newlne := []string{"\n"}
 	for i := 0; i < len(str); i++ {
 		m := (str[i] - 32)
@@ -45,28 +50,24 @@ func main() {
 		}
 		b1 = append(b1, asci[m])
 	}
-	fmt.Println(b1[0][0])
-	s := 0
-	 //m:=0
-	for i := 0; i < 8; i++ {
-		for j := s; j < len(b1); j++ {
-			if b1[j][0] == "\n" {
-				continue
+	fmt.Println(b1[0][0])*/
+	//s := 0
+	// m:=0
+	//fmt.Println(len(newstring))
+	if newstring[len(newstring)-1]=="" {
+		newstring=newstring[:len(newstring)-1]
+	}
+	for k := 0; k < len(newstring); k++ {
+		for i := 0; i < 8; i++ {
+			for j := 0; j < len(newstring[k]); j++ {
+				m := (newstring[k][j] - 32)
+				fmt.Print(asci[m][i])
 			}
-			// m := (str[j] - 32)
-			fmt.Print(b1[j][i])
-			if j != len(b1)-1 && i == 7 && b1[j+1][0] == "\n" {
-				s = j + 1
-				i=-1
-				fmt.Println()
+			fmt.Println()
+			if len(newstring[k])==0{
 				break
 			}
-			if j != len(b1)-1 && b1[j+1][0] == "\n" {
-				j = 0
-				break
-			}
-
 		}
-		fmt.Println()
+		 
 	}
 }
