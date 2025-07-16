@@ -4,8 +4,23 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
+
+func Split(s string) []string {
+	word := []string{}
+	start := 0
+	for i := 0; i < len(s); i++ {
+		if i != len(s)-1 && (s[i]) == '\\' && s[i+1] == 'n' {
+			fmt.Println("ok")
+			word = append(word, s[start:i])
+			start = i + 2
+		}
+	}
+	if start < len(s) {
+		word = append(word, s[start:])
+	}
+	return word
+}
 
 func main() {
 	file, err := os.Open("standard.txt")
@@ -35,10 +50,11 @@ func main() {
 	}
 
 	str := os.Args[1]
-	//ne := strings.ReplaceAll(str, `\n`, "\n")
-	newstring := strings.Split(str, "\\n")
-	//fmt.Println(str)
-	
+	// ne := strings.ReplaceAll(str, `\n`, "\n")
+	newstring := Split(string(str))
+	fmt.Println(newstring)
+	// fmt.Println(str)
+
 	// fmt.Println(asci[0])
 	/*b1 := [][]string{}
 	newlne := []string{"\n"}
@@ -54,9 +70,7 @@ func main() {
 	//s := 0
 	// m:=0
 	//fmt.Println(len(newstring))
-	if newstring[len(newstring)-1]=="" {
-		newstring=newstring[:len(newstring)-1]
-	}
+	
 	for k := 0; k < len(newstring); k++ {
 		for i := 0; i < 8; i++ {
 			for j := 0; j < len(newstring[k]); j++ {
@@ -64,10 +78,9 @@ func main() {
 				fmt.Print(asci[m][i])
 			}
 			fmt.Println()
-			if len(newstring[k])==0{
+			if len(newstring[k]) == 0 {
 				break
 			}
 		}
-		 
 	}
 }
